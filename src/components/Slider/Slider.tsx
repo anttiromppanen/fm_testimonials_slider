@@ -27,8 +27,13 @@ export default function Slider({ testimonials }: Props) {
       relative z-0 mt-12 flex h-full w-full max-w-[1204px] flex-col-reverse items-center justify-end
       md:mt-0 md:flex-row md:justify-center md:pl-10 lg:pl-0"
     >
-      <div className="mt-12 text-center text-lg md:-mr-80 md:mt-0 md:text-left md:text-[28px] lg:-mr-40 lg:text-base">
-        <p className="font-light leading-6 text-userDarkBlue md:leading-10">
+      <div
+        className="
+        bg-userQuotesBg mt-8 bg-[length:15%] bg-top bg-no-repeat text-center text-lg
+        md:-mr-80 md:mt-0 md:text-left md:text-[28px] 
+        lg:-mr-40 lg:text-base"
+      >
+        <p className="mt-8 font-light leading-6 text-userDarkBlue md:mt-0 md:leading-10">
           {currentTestimonial.text}
         </p>
         <p className="mt-8 text-[16px] font-bold leading-5 md:text-xl">
