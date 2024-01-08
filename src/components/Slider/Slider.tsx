@@ -34,7 +34,7 @@ export default function Slider({ testimonials }: Props) {
   };
 
   return (
-    <div
+    <article
       className="
       relative z-0 mt-12 flex h-full w-full max-w-[1204px] flex-col-reverse items-center justify-end
       md:mt-0 md:flex-row md:justify-center md:pl-10 lg:pl-0"
@@ -46,23 +46,23 @@ export default function Slider({ testimonials }: Props) {
         lg:pt-12 lg:text-base"
       >
         <AnimatePresence mode="wait">
-          <motion.div
+          <motion.section
             key={currentTestimonial.text}
             initial="initial"
             animate="animate"
             exit="initial"
             variants={animVariants.text}
           >
-            <p className="mt-8 font-light leading-6 text-userDarkBlue md:mt-0 md:leading-10">
+            <h1 className="mt-8 font-light leading-6 text-userDarkBlue md:mt-0 md:leading-10">
               {currentTestimonial.text}
-            </p>
+            </h1>
             <p className="mt-8 text-[16px] font-bold leading-5 md:text-xl">
               {currentTestimonial.author}
               <span className="block font-medium text-userGrayishBlue lg:ml-2 lg:inline">
                 {currentTestimonial.title}
               </span>
             </p>
-          </motion.div>
+          </motion.section>
         </AnimatePresence>
       </div>
       <div
@@ -87,6 +87,6 @@ export default function Slider({ testimonials }: Props) {
           handlePreviousTestimonial={() => handleButtonClick(-1)}
         />
       </div>
-    </div>
+    </article>
   );
 }
