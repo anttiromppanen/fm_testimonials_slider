@@ -1,5 +1,17 @@
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import SliderButtons from "./SliderButtons";
+
+const animVariants = {
+  text: {
+    initial: { x: -100, opacity: 0 },
+    animate: { x: 0, opacity: 1 },
+  },
+  img: {
+    initial: { x: 100, opacity: 0 },
+    animate: { x: 0, opacity: 1 },
+  },
+};
 
 interface Props {
   testimonials: {
@@ -29,30 +41,47 @@ export default function Slider({ testimonials }: Props) {
     >
       <div
         className="
-        bg-userQuotesBg mt-8 bg-[length:15%] bg-top bg-no-repeat text-center text-lg
-        md:-mr-80 md:mt-0 md:text-left md:text-[28px] 
-        lg:-mr-40 lg:text-base"
+        mt-8 bg-userQuotesBg bg-[length:15%] bg-top bg-no-repeat text-center text-lg
+        md:-mr-80 md:mt-0 md:bg-[4rem_top] md:pt-6 md:text-left md:text-[28px] lg:-mr-40 lg:bg-[6rem_top]
+        lg:pt-12 lg:text-base"
       >
-        <p className="mt-8 font-light leading-6 text-userDarkBlue md:mt-0 md:leading-10">
-          {currentTestimonial.text}
-        </p>
-        <p className="mt-8 text-[16px] font-bold leading-5 md:text-xl">
-          {currentTestimonial.author}
-          <span className="block font-medium text-userGrayishBlue lg:ml-2 lg:inline">
-            {currentTestimonial.title}
-          </span>
-        </p>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentTestimonial.text}
+            initial="initial"
+            animate="animate"
+            exit="initial"
+            variants={animVariants.text}
+          >
+            <p className="mt-8 font-light leading-6 text-userDarkBlue md:mt-0 md:leading-10">
+              {currentTestimonial.text}
+            </p>
+            <p className="mt-8 text-[16px] font-bold leading-5 md:text-xl">
+              {currentTestimonial.author}
+              <span className="block font-medium text-userGrayishBlue lg:ml-2 lg:inline">
+                {currentTestimonial.title}
+              </span>
+            </p>
+          </motion.div>
+        </AnimatePresence>
       </div>
       <div
         className="
-          bg-userPatternBg relative -z-20 flex h-[310px] w-full items-center justify-center bg-contain bg-center bg-no-repeat md:h-[600px]
-          md:min-w-[700px] md:justify-end md:bg-right lg:justify-center lg:bg-left"
+        relative -z-20 flex h-[310px] w-full items-center justify-center overflow-hidden bg-userPatternBg bg-contain bg-center bg-no-repeat md:h-[600px]
+        md:min-w-[700px] md:justify-end md:bg-right lg:justify-center lg:bg-left"
       >
-        <img
-          src={currentTestimonial.image}
-          alt=""
-          className="relative -z-10 w-[256px] rounded-md shadow-2xl md:mr-20 md:w-[400px] lg:w-[500px]"
-        />
+        <AnimatePresence mode="wait">
+          <motion.img
+            initial="initial"
+            animate="animate"
+            exit="initial"
+            variants={animVariants.img}
+            key={currentTestimonial.image}
+            src={currentTestimonial.image}
+            alt=""
+            className="relative -z-10 w-[256px] rounded-md shadow-xl md:mr-20 md:w-[400px] lg:w-[500px]"
+          />
+        </AnimatePresence>
         <SliderButtons
           handleNextTestimonial={() => handleButtonClick(1)}
           handlePreviousTestimonial={() => handleButtonClick(-1)}
